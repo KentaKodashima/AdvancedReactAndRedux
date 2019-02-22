@@ -1,0 +1,10 @@
+{
+  "files.watcherExclude": {
+    "**/.cocoapods/**": true,
+    "**/.rvm/**": true,
+    "**/Dropbox/**": true,
+    "**/GoogleDrive/**": true,
+    "**/Library/**": true,
+    "**/Pictures/**": true
+  }
+}
