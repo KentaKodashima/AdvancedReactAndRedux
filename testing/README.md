@@ -73,3 +73,18 @@ afterEach(() => {
 - simulate()
 - update()
 - describe()  
+
+### Testing in React/Redux App
+Importing a component itself in a test file would be a problem if the component is wired up with Redux store. 
+
+The error below is saying that the test file only knows about the component and has no idea about what the store is.
+
+```
+Invariant Violation: Could not find "store" in the context of "Connect(CommentBox)". Either wrap the root component in a <Provider>, or pass a custom React context provider to <Provider> and the corresponding React context consumer to Connect(CommentBox) in connect options.
+```
+
+#### Solution to the Problem
+Create Root.js which has 'Provider', 'createStore' and other redux stuff. Then you can import the Root in testing files.
+```
+
+```

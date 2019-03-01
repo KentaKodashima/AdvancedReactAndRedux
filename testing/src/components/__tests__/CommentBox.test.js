@@ -1,13 +1,18 @@
 import React from 'react'
-import { mount, unmount } from 'enzyme'
+import { mount } from 'enzyme'
 
-import CommentBox from "components/CommentBox";
-import { comment } from 'postcss-selector-parser';
+import Root from 'Root'
+import CommentBox from "components/CommentBox"
+
 
 let component
 
 beforeEach(() =>  {
-  component = mount(<CommentBox />)
+  component = mount(
+    <Root>
+      <CommentBox />
+    </Root>
+  )
 })
 
 afterEach(() => {
