@@ -155,3 +155,49 @@ export default ({ children, initialState = {} }) => {
   )
 }
 ```
+
+### Integration Test
+The aim of integration tests is to test many parts of the app simultaneously unlike unit tests which are aimed to test one part one by one.
+
+**Unit Tests:**
+- Does the CommentBox show a button?
+- Does the CommentList produce a list of 'li' elements?
+- Does the action creator return an object?
+
+**Integration Tests:**
+- Does clicking 'Fetch comments' show a list of 'li' elements?
+
+### Moxios: Ajax Request from Jest
+Jest is a fake browser environment. Therefore it's not allowed to make Ajax request. Moxios allows us to fake a request.
+```
+beforeEach(() => {
+  moxios.install()
+  // Catch all requests to the URL
+  moxios.stubRequest('https://jsonplaceholder.typicode.com/comments', {
+    status: 200,
+    response: [{ name: 'Fetched #1' }, { name: 'Fetched #2' }]
+  })
+})
+
+afterEach(() => {
+  moxios.uninstall()
+})
+
+it('can fetch a list of comments and display them', () => {
+  // Attempt to render the *entire* app
+  const comment = mount(
+    <Root>
+      <App />
+    </Root>
+  )
+
+  // find the 'fetchComments' button and click it
+  comment.find('.fetch-comments').simulate('click')
+
+  // introduce a pause
+  setTimeout(() => {
+    // Expect to find a list of comments
+    expect(comment.find('li').length).toEqual(2)
+  }, 100)
+})
+```
