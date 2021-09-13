@@ -9,10 +9,15 @@ export const saveComment = (comment) => {
   }
 }
 
-export const fetchComments = () => async dispatch => {
-  const response = await axios.get('https://jsonplaceholder.typicode.com/comments')//jsonplaceholder.get('comments')
+// export const fetchComments = () => async (dispatch) => {
+//   const response = await axios.get('https://jsonplaceholder.typicode.com/comments') //jsonplaceholder.get('comments')
 
-  dispatch({ type: FETCH_COMMENTS, payload: response })
+//   dispatch({ type: FETCH_COMMENTS, payload: response })
+// }
+
+export const fetchComments = () => {
+  const response = axios.get('https://jsonplaceholder.typicode.com/comments') //jsonplaceholder.get('comments')
+  return { type: FETCH_COMMENTS, payload: response }
 }
 
 export const changeAuth = (isLoggedIn) => {
