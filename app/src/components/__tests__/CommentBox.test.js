@@ -28,7 +28,7 @@ describe('the textarea', () => {
   beforeEach(() => {
     // 1. Find the textarea
     // 2. Simulate a 'change' event
-      // 'change' is the event name
+    //      'change' is the event name
     // 3. Provide a fake event object
     component.find('textarea').simulate('change', {
       target: { value: 'new comment' }

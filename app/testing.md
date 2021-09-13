@@ -1,4 +1,4 @@
-# Advanced React and Redux
+# Testing in React app
 
 ## Jest : Testing in React
 Jest is an automated test runner.

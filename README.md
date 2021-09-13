@@ -5,3 +5,5 @@ This is a repository to store what I'm learning via the online course named 'Adv
 
 ## Topics
 - Testing in React/Redux app
+- Higher order components
+- 
