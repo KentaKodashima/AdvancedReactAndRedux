@@ -7,7 +7,11 @@ import reducers from 'reducers'
 
 // ES destructuring allows us to assign default values to props
 export default ({ children, initialState = {} }) => {
-  const store = createStore(reducers, initialState, applyMiddleware(thunk))
+  const store = createStore(
+    reducers,
+    initialState,
+    applyMiddleware(thunk)
+  )
 
   return (
     <Provider store={store}>
