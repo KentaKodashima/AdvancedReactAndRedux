@@ -20,7 +20,7 @@ const userSchema = new Schema({
 userSchema.pre('save', function(next) {
   // Getting access to the UserModel with actual email and password
   const user = this
-console.log(user, 'user')
+  
   // Generate a salt, then run callback
   bcrypt.genSalt(10, function(err, salt) {
     if (err) return next(err)

@@ -1,4 +1,19 @@
+require('dotenv').config()
+const fs = require('fs')
+const jwt = require('jsonwebtoken')
 const UserModel = require('../models/UserModel')
+
+function createToken(user) {
+  const privateKey = fs.readFileSync(process.env.PRIVATE_KEY)
+  const passphrase = process.env.PEM_PASSPHRASE
+
+  // Available opitons of jwt: https://github.com/auth0/node-jsonwebtoken/
+  return jwt.sign(
+    { userId: user.id }, // payload
+    { key: privateKey, passphrase }, // secretOrPrivateKey
+    { subject: user.id, algorithm: 'RS256' } // options, callback
+  )
+}
 
 /**
  * @param {} req - reqest that has been made
@@ -30,7 +45,7 @@ exports.signup = function (req, res, next) {
     // Save the record to the DB
     user.save((err) => {
       if (err) return next(err)
-      res.json(user)
+      res.json({ token: createToken(user) })
     })
   })
 }

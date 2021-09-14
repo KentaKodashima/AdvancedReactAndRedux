@@ -1,13 +1,14 @@
+const path = require('path')
+require('dotenv').config({ path: path.join(__dirname, '.env') })
 const express = require('express')
 // http is a native node library that is working very low level with HTTP requests that are incoming
 const http = require('http')
 const morgan = require('morgan')
 const router = require('./router')
 const mongoose = require('mongoose')
-const keys = require('./config/keys')
 
 // Connect mongoose to MongoDB Atlas
-mongoose.connect(keys.mongoURL)
+mongoose.connect(process.env.MONGODB_URL)
 
 const app = express()
 
